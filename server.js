@@ -6,7 +6,13 @@ require("dotenv").config();
 const app = express();
 const port = process.env.PORT || 5001;
 
-app.use(cors());
+// ✅ Allow frontend deployed on Netlify
+app.use(cors({
+  origin: "https://photo-gallery-frontend.netlify.app",
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true
+}));
+
 app.use(express.json());
 
 // MongoDB connection
